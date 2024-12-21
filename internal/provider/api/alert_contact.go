@@ -123,7 +123,18 @@ func (client UptimeRobotApiClient) GetAlertContact(id string) (ac AlertContact, 
 		return
 	}
 
-	alertcontact := alertcontacts[0].(map[string]interface{})
+	var alertcontact = make(map[string]interface{})
+	for i := range alertcontacts {
+	    if alertcontacts[i].(map[string]interface{})["id"] == id {
+	        alertcontact = alertcontacts[i].(map[string]interface{})
+	        break
+	    }
+	}
+
+	if len(alertcontact) == 0 {
+		err = fmt.Errorf("alert contact with id %v not found", id)
+		return
+	}
 
 	ac.FriendlyName = alertcontact["friendly_name"].(string)
 	ac.Value = alertcontact["value"].(string)
