@@ -18,7 +18,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -32,7 +32,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -50,7 +50,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -64,7 +64,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -76,7 +76,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -95,7 +95,7 @@ func TestUptimeRobotDataResourceAlertContact_sms(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -109,7 +109,7 @@ func TestUptimeRobotDataResourceAlertContact_sms(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", tel),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
