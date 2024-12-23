@@ -21,17 +21,17 @@ func resourceStatusPage() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
-			"friendly_name": &schema.Schema{
+			"friendly_name": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"custom_domain": &schema.Schema{
+			"custom_domain": {
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
 				Default:  "",
 			},
-			"password": &schema.Schema{
+			"password": {
 				Type:      schema.TypeString,
 				Optional:  true,
 				Sensitive: true,
@@ -42,13 +42,13 @@ func resourceStatusPage() *schema.Resource {
 				ValidateFunc: validation.StringInSlice(uptimerobotapi.StatusPageSort, false),
 				Default:      "a-z",
 			},
-			"status": &schema.Schema{
+			"status": {
 				Type:         schema.TypeString,
 				Optional:     true,
 				ValidateFunc: validation.StringInSlice(uptimerobotapi.StatusPageStatus, false),
 				Default:      "active",
 			},
-			"monitors": &schema.Schema{
+			"monitors": {
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem: &schema.Schema{
@@ -61,15 +61,15 @@ func resourceStatusPage() *schema.Resource {
 					return false
 				},
 			},
-			"dns_address": &schema.Schema{
+			"dns_address": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"standard_url": &schema.Schema{
+			"standard_url": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
-			"custom_url": &schema.Schema{
+			"custom_url": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
@@ -133,11 +133,11 @@ func resourceStatusPageUpdate(d *schema.ResourceData, m interface{}) error {
 	sp, err := m.(uptimerobotapi.UptimeRobotApiClient).UpdateStatusPage(uptimerobotapi.StatusPageUpdateRequest{
 		ID:           id,
 		FriendlyName: d.Get("friendly_name").(string),
-		CustomDomain: d.Get("custom_domain").(string),
-		Password:     d.Get("password").(string),
-		Monitors:     monitors,
-		Sort:         d.Get("sort").(string),
-		Status:       d.Get("status").(string),
+		// CustomDomain: d.Get("custom_domain").(string),
+		Password: d.Get("password").(string),
+		Monitors: monitors,
+		Sort:     d.Get("sort").(string),
+		Status:   d.Get("status").(string),
 	})
 	if err != nil {
 		return err

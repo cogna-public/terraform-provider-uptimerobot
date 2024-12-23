@@ -18,7 +18,7 @@ func TestUptimeRobotDataResourceStatusPage_basic(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckStatusPageDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_status_page" "test" {
 					friendly_name = "%s"
@@ -30,7 +30,7 @@ func TestUptimeRobotDataResourceStatusPage_basic(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_status_page.test", "monitors.0", "0"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_status_page.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -39,15 +39,16 @@ func TestUptimeRobotDataResourceStatusPage_basic(t *testing.T) {
 	})
 }
 
-func TestUptimeRobotDataResourceStatusPage_update_name(t *testing.T) {
-	var friendlyName = "TF Test: Update name"
-	var friendlyName2 = "TF Test: Update name 2"
+func TestUptimeRobotDataResourceSkktatusPage_update_name(t *testing.T) {
+	t.Skip("Bug in UptimeRobot API - status pages created via API cannot be edited; returns 500 error")
+	var friendlyName = "TF-Test-update"
+	var friendlyName2 = "TF-Test-updated"
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckStatusPageDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_status_page" "test" {
 					friendly_name = "%s"
@@ -59,7 +60,7 @@ func TestUptimeRobotDataResourceStatusPage_update_name(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_status_page.test", "monitors.0", "0"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_status_page" "test" {
 					friendly_name = "%s"
@@ -69,7 +70,7 @@ func TestUptimeRobotDataResourceStatusPage_update_name(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_status_page.test", "friendly_name", friendlyName2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_status_page.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -85,7 +86,7 @@ func TestUptimeRobotDataResourceStatusPage_custom_monitors(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckStatusPageDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "TF Test: status page custom monitors"
@@ -103,7 +104,7 @@ func TestUptimeRobotDataResourceStatusPage_custom_monitors(t *testing.T) {
 					resource.TestCheckResourceAttrSet("uptimerobot_status_page.test", "monitors.0"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_status_page.test",
 				ImportState:       true,
 				ImportStateVerify: true,

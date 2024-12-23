@@ -131,7 +131,6 @@ func resourceMonitorCreate(d *schema.ResourceData, m interface{}) error {
 	case "port":
 		req.SubType = d.Get("sub_type").(string)
 		req.Port = d.Get("port").(int)
-		break
 	case "keyword":
 		req.KeywordType = d.Get("keyword_type").(string)
 		req.KeywordValue = d.Get("keyword_value").(string)
@@ -140,13 +139,11 @@ func resourceMonitorCreate(d *schema.ResourceData, m interface{}) error {
 		req.HTTPUsername = d.Get("http_username").(string)
 		req.HTTPPassword = d.Get("http_password").(string)
 		req.HTTPAuthType = d.Get("http_auth_type").(string)
-		break
 	case "http":
 		req.HTTPMethod = d.Get("http_method").(string)
 		req.HTTPUsername = d.Get("http_username").(string)
 		req.HTTPPassword = d.Get("http_password").(string)
 		req.HTTPAuthType = d.Get("http_auth_type").(string)
-		break
 	}
 
 	// Add optional attributes
@@ -216,7 +213,6 @@ func resourceMonitorUpdate(d *schema.ResourceData, m interface{}) error {
 	case "port":
 		req.SubType = d.Get("sub_type").(string)
 		req.Port = d.Get("port").(int)
-		break
 	case "keyword":
 		req.KeywordType = d.Get("keyword_type").(string)
 		req.KeywordValue = d.Get("keyword_value").(string)
@@ -225,13 +221,11 @@ func resourceMonitorUpdate(d *schema.ResourceData, m interface{}) error {
 		req.HTTPUsername = d.Get("http_username").(string)
 		req.HTTPPassword = d.Get("http_password").(string)
 		req.HTTPAuthType = d.Get("http_auth_type").(string)
-		break
 	case "http":
 		req.HTTPMethod = d.Get("http_method").(string)
 		req.HTTPUsername = d.Get("http_username").(string)
 		req.HTTPPassword = d.Get("http_password").(string)
 		req.HTTPAuthType = d.Get("http_auth_type").(string)
-		break
 	}
 
 	// Add optional attributes

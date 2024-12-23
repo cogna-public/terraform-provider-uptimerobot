@@ -21,7 +21,7 @@ func TestUptimeRobotDataResourceMonitor_http_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -35,13 +35,13 @@ func TestUptimeRobotDataResourceMonitor_http_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "url", URL),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
 				// ImportStateVerify: true,
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -53,7 +53,7 @@ func TestUptimeRobotDataResourceMonitor_http_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "url", URL2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -75,7 +75,7 @@ func TestUptimeRobotDataResourceMonitor_keyword_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -93,13 +93,13 @@ func TestUptimeRobotDataResourceMonitor_keyword_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "keyword_value", KeywordValue),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
 				// ImportStateVerify: true,
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -113,7 +113,7 @@ func TestUptimeRobotDataResourceMonitor_keyword_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "keyword_type", KeywordType2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -134,7 +134,7 @@ func TestUptimeRobotDataResourceMonitor_http_port_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -150,13 +150,13 @@ func TestUptimeRobotDataResourceMonitor_http_port_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "sub_type", SubType),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
 				// ImportStateVerify: true,
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -169,7 +169,7 @@ func TestUptimeRobotDataResourceMonitor_http_port_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "url", URL2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -190,7 +190,7 @@ func TestUptimeRobotDataResourceMonitor_custom_port_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -208,7 +208,7 @@ func TestUptimeRobotDataResourceMonitor_custom_port_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "port", fmt.Sprintf(`%d`, Port)),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -227,7 +227,7 @@ func TestUptimeRobotDataResourceMonitor_custom_ignore_ssl_errors(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name     = "%s"
@@ -243,7 +243,7 @@ func TestUptimeRobotDataResourceMonitor_custom_ignore_ssl_errors(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "ignore_ssl_errors", "true"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -253,6 +253,7 @@ func TestUptimeRobotDataResourceMonitor_custom_ignore_ssl_errors(t *testing.T) {
 	})
 }
 func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recurrence(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var FriendlyName = "TF Test: custom alert contact threshold & recurrence"
 	var Type = "http"
 	var URL = "https://google.com"
@@ -261,7 +262,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recur
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "SRE Team"
@@ -289,7 +290,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recur
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "alert_contact.0.recurrence", "0"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -300,6 +301,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recur
 }
 
 func TestUptimeRobotDataResourceMonitor_custom_alert_contacts(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var FriendlyName = "TF Test: custom alert contacts"
 	var Type = "http"
 	var URL = "https://google.com"
@@ -308,7 +310,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contacts(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test1" {
 					friendly_name = "Test 1"
@@ -365,7 +367,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contacts(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "alert_contact.2.recurrence", "0"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -384,7 +386,7 @@ func TestUptimeRobotDataResourceMonitor_custom_http_headers(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -402,7 +404,7 @@ func TestUptimeRobotDataResourceMonitor_custom_http_headers(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "custom_http_headers.%", "0"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -421,7 +423,7 @@ func TestUptimeRobotDataResourceMonitor_ping_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -435,7 +437,7 @@ func TestUptimeRobotDataResourceMonitor_ping_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "url", URL),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -456,7 +458,7 @@ func TestUptimeRobotDataResourceMonitor_custom_interval(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -472,13 +474,13 @@ func TestUptimeRobotDataResourceMonitor_custom_interval(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "interval", fmt.Sprintf(`%d`, Interval)),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
 				// ImportStateVerify: true,
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name = "%s"
@@ -494,7 +496,7 @@ func TestUptimeRobotDataResourceMonitor_custom_interval(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "interval", fmt.Sprintf(`%d`, Interval2)),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -514,7 +516,7 @@ func TestUptimeRobotDataResourceMonitor_http_method(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name  = "%s"
@@ -530,7 +532,7 @@ func TestUptimeRobotDataResourceMonitor_http_method(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "http_method", Method),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue
@@ -553,7 +555,7 @@ func TestUptimeRobotDataResourceMonitor_http_auth_monitor(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name  = "%s"
@@ -573,13 +575,13 @@ func TestUptimeRobotDataResourceMonitor_http_auth_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "http_auth_type", AuthType),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_auth_type issue
 				// ImportStateVerify: true,
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_monitor" "test" {
 					friendly_name  = "%s"
@@ -599,7 +601,7 @@ func TestUptimeRobotDataResourceMonitor_http_auth_monitor(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_monitor.test", "http_auth_type", AuthType2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_auth_type issue
@@ -618,13 +620,13 @@ func TestUptimeRobotDataResourceMonitor_default_alert_contact(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckMonitorDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 
 				data "uptimerobot_account" "account" {}
 
 				data "uptimerobot_alert_contact" "default" {
-				friendly_name = data.uptimerobot_account.account.email
+				  value = data.uptimerobot_account.account.email
 				}
 
 				resource "uptimerobot_monitor" "test" {
@@ -644,7 +646,7 @@ func TestUptimeRobotDataResourceMonitor_default_alert_contact(t *testing.T) {
 					resource.TestCheckResourceAttrSet("uptimerobot_monitor.test", "alert_contact.0.id"),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName: "uptimerobot_monitor.test",
 				ImportState:  true,
 				// NB: Disabled due to http_method issue

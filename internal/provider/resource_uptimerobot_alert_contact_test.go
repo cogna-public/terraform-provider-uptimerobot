@@ -10,7 +10,9 @@ import (
 	uptimerobotapi "github.com/vexxhost/terraform-provider-uptimerobot/internal/provider/api"
 )
 
+// TODO - you can use only 1 active alert contact
 func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var email = "louay+tftest@alakkad.me"
 	var friendlyName = "TF Test: Email"
 	resource.Test(t, resource.TestCase{
@@ -18,7 +20,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -32,7 +34,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -42,6 +44,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 }
 
 func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var email = "louay+tftest@alakkad.me"
 	var email2 = "louay+tftest2@alakkad.me"
 	var friendlyName = "TF Test: Email"
@@ -50,7 +53,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -64,7 +67,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -76,7 +79,7 @@ func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", email2),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
@@ -95,7 +98,7 @@ func TestUptimeRobotDataResourceAlertContact_sms(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckAlertContactDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: fmt.Sprintf(`
 				resource "uptimerobot_alert_contact" "test" {
 					friendly_name = "%s"
@@ -109,7 +112,7 @@ func TestUptimeRobotDataResourceAlertContact_sms(t *testing.T) {
 					resource.TestCheckResourceAttr("uptimerobot_alert_contact.test", "value", tel),
 				),
 			},
-			resource.TestStep{
+			{
 				ResourceName:      "uptimerobot_alert_contact.test",
 				ImportState:       true,
 				ImportStateVerify: true,
