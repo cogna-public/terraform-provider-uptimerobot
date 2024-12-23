@@ -10,7 +10,9 @@ import (
 	uptimerobotapi "github.com/vexxhost/terraform-provider-uptimerobot/internal/provider/api"
 )
 
+// TODO - you can use only 1 active alert contact
 func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var email = "louay+tftest@alakkad.me"
 	var friendlyName = "TF Test: Email"
 	resource.Test(t, resource.TestCase{
@@ -42,6 +44,7 @@ func TestUptimeRobotDataResourceAlertContact_email(t *testing.T) {
 }
 
 func TestUptimeRobotDataResourceAlertContact_update_email(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var email = "louay+tftest@alakkad.me"
 	var email2 = "louay+tftest2@alakkad.me"
 	var friendlyName = "TF Test: Email"

@@ -125,10 +125,10 @@ func (client UptimeRobotApiClient) GetAlertContact(id string) (ac AlertContact, 
 
 	var alertcontact = make(map[string]interface{})
 	for i := range alertcontacts {
-	    if alertcontacts[i].(map[string]interface{})["id"] == id {
-	        alertcontact = alertcontacts[i].(map[string]interface{})
-	        break
-	    }
+		if alertcontacts[i].(map[string]interface{})["id"] == id {
+			alertcontact = alertcontacts[i].(map[string]interface{})
+			break
+		}
 	}
 
 	if len(alertcontact) == 0 {

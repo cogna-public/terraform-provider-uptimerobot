@@ -253,6 +253,7 @@ func TestUptimeRobotDataResourceMonitor_custom_ignore_ssl_errors(t *testing.T) {
 	})
 }
 func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recurrence(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var FriendlyName = "TF Test: custom alert contact threshold & recurrence"
 	var Type = "http"
 	var URL = "https://google.com"
@@ -300,6 +301,7 @@ func TestUptimeRobotDataResourceMonitor_custom_alert_contact_threshold_and_recur
 }
 
 func TestUptimeRobotDataResourceMonitor_custom_alert_contacts(t *testing.T) {
+	t.Skip("UptimeRobot response: you can use only 1 active alert contact")
 	var FriendlyName = "TF Test: custom alert contacts"
 	var Type = "http"
 	var URL = "https://google.com"
@@ -624,7 +626,7 @@ func TestUptimeRobotDataResourceMonitor_default_alert_contact(t *testing.T) {
 				data "uptimerobot_account" "account" {}
 
 				data "uptimerobot_alert_contact" "default" {
-				friendly_name = data.uptimerobot_account.account.email
+				  value = data.uptimerobot_account.account.email
 				}
 
 				resource "uptimerobot_monitor" "test" {

@@ -27,17 +27,32 @@ func dataSourceAlertContactRead(d *schema.ResourceData, m interface{}) error {
 	}
 
 	friendlyName := d.Get("friendly_name").(string)
+	value := d.Get("value").(string)
 
 	var alertContact uptimerobotapi.AlertContact
 
-	for _, a := range alertContacts {
-		if friendlyName != "" && a.FriendlyName == friendlyName {
-			alertContact = a
-			break
+	if friendlyName != "" {
+		for _, a := range alertContacts {
+			if friendlyName != "" && a.FriendlyName == friendlyName {
+				alertContact = a
+				break
+			}
+		}
+	} else if value != "" {
+		for _, a := range alertContacts {
+			if value != "" && a.Value == value {
+				alertContact = a
+				break
+			}
 		}
 	}
+
 	if alertContact == (uptimerobotapi.AlertContact{}) {
-		return fmt.Errorf("failed to find alert contact by name %s", friendlyName)
+		if friendlyName != "" {
+			return fmt.Errorf("failed to find alert contact by friendly_name %s", friendlyName)
+		} else if value != "" {
+			return fmt.Errorf("failed to find alert contact by value %s", value)
+		}
 	}
 
 	d.SetId(alertContact.ID)

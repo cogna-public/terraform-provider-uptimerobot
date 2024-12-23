@@ -39,9 +39,10 @@ func TestUptimeRobotDataResourceStatusPage_basic(t *testing.T) {
 	})
 }
 
-func TestUptimeRobotDataResourceStatusPage_update_name(t *testing.T) {
-	var friendlyName = "TF Test: Update name"
-	var friendlyName2 = "TF Test: Update name 2"
+func TestUptimeRobotDataResourceSkktatusPage_update_name(t *testing.T) {
+	t.Skip("Bug in UptimeRobot API - status pages created via API cannot be edited; returns 500 error")
+	var friendlyName = "TF-Test-update"
+	var friendlyName2 = "TF-Test-updated"
 	resource.Test(t, resource.TestCase{
 		PreCheck:     func() { testAccPreCheck(t) },
 		Providers:    testAccProviders,

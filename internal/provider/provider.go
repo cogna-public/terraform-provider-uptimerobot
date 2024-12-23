@@ -19,15 +19,16 @@ import (
 func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
-			"api_key": &schema.Schema{
+			"api_key": {
 				Type:        schema.TypeString,
 				Required:    true,
 				DefaultFunc: schema.EnvDefaultFunc("UPTIMEROBOT_API_KEY", nil),
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
-			"uptimerobot_account":       dataSourceAccount(),
-			"uptimerobot_alert_contact": dataSourceAlertContact(),
+			"uptimerobot_account":        dataSourceAccount(),
+			"uptimerobot_alert_contact":  dataSourceAlertContact(),
+			"uptimerobot_alert_contacts": dataSourceAlertContacts(),
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"uptimerobot_alert_contact": resourceAlertContact(),

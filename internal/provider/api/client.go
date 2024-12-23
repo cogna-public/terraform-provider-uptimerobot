@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -24,7 +24,7 @@ func (client UptimeRobotApiClient) MakeCall(
 	endpoint string,
 	params string,
 ) (map[string]interface{}, error) {
-	log.Printf("[DEBUG] Making request to: %#v", endpoint)
+	log.Printf("[DEBUG] Making request to: %#v with params %s", endpoint, params)
 
 	url := "https://api.uptimerobot.com/v2/" + endpoint
 
@@ -38,7 +38,7 @@ func (client UptimeRobotApiClient) MakeCall(
 	req.Header.Add("content-type", "application/x-www-form-urlencoded")
 
 	retryClient := retryablehttp.NewClient()
-	retryClient.RetryMax = 10
+	retryClient.RetryMax = 3
 	standardClient := retryClient.StandardClient()
 
 	res, err := standardClient.Do(req)
@@ -47,7 +47,7 @@ func (client UptimeRobotApiClient) MakeCall(
 	}
 
 	defer res.Body.Close()
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		return nil, err
 	}
