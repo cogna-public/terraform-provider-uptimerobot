@@ -1,7 +1,14 @@
 # Terraform UptimeRobot Provider
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
-[![Build Status](https://github.com/louy/terraform-provider-uptimerobot/workflows/test/badge.svg)](https://github.com/louy/terraform-provider-uptimerobot/actions?query=branch%3Amaster+workflow%3Atest)
+
+## Status
+
+The [uptimerobot API](https://uptimerobot.com/api/) seems to have various
+issues; resources created via the API can in some cases result in an inconsistent
+state; attempts to modify them via the API will then result in 500 errors.
+
+Reportedly a new API is under development for release some time in 2025.
 
 ## Migrating from the old provider
 
@@ -9,19 +16,19 @@ If you're using the provider this was forked from, you can run the following to 
 new provider:
 
 ```bash
-terraform state replace-provider louy/uptimerobot vexxhost/uptimerobot
+terraform state replace-provider vexxhost/uptimerobot cogna-public/uptimerobot
 ```
 
 ## Getting started
 
-To install this provider, check out the installation instructions on [Terraform's registry page](https://registry.terraform.io/providers/vexxhost/uptimerobot/latest).
+To install this provider, check out the installation instructions on [Terraform's registry page](https://registry.terraform.io/providers/cogna-public/uptimerobot/latest).
 
 ```tf
 terraform {
   required_providers {
     uptimerobot = {
-      source = "vexxhost/uptimerobot"
-      version = "0.8.0"
+      source = "cogna-public/uptimerobot"
+      version = "0.8.3"
     }
   }
 }
