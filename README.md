@@ -28,7 +28,7 @@ terraform {
   required_providers {
     uptimerobot = {
       source = "cogna-public/uptimerobot"
-      version = "0.8.4"
+      version = "0.8.5"
     }
   }
 }
